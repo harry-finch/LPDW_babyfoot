@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 
 // #TODO
 // - Page de classement des joueurs
-// - Page de statistiques
 
 // ******************************************************************************
 // Route qui gère l'affichage de la page d'un match.
@@ -125,7 +124,7 @@ router.get("/score/:gameid/:score1/:score2", async (req, res) => {
 });
 
 // ******************************************************************************
-// API à des fins de tests
+// API pour tests
 // ******************************************************************************
 
 router.get("/createDummy", async (req, res) => {

@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
-var crypto = require("crypto");
+
+// Script with HTML rendering functions
+var render = require("../utilities/render");
 
 const isAdmin = require("../middleware/checkAdmin.js");
 router.use(isAdmin);
@@ -25,7 +27,8 @@ router.get("/", async (req, res) => {
     },
   });
 
-  res.render("admin", { users: allUsers, babyfoots: allBabyfoots, games: currentGames });
+  // Passing data and rendering functions
+  res.render("admin", { users: allUsers, babyfoots: allBabyfoots, games: currentGames, render: render });
 });
 
 module.exports = router;

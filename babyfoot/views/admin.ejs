@@ -3,16 +3,14 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,minimum-scale=1" />
-        <title>Login</title>
-        <!-- the form awesome library is used to add icons to our form -->
+        <title>Admin</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
-        <!-- include the stylesheet file -->
         <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
         <div class="login">
-            <h1>Utilisateurs enregistrés</h1>
+            <h1>Page d'administration</h1>
             <% if (locals.error) { %>
             <h2><%= error %></h2>
             <% } %>
@@ -24,29 +22,13 @@
                 <input type="submit" value="Add babyfoot" />
             </form>
             <table>
-                <% users.forEach(function(user) { %>
-                <tr>
-                    <td><%= user.nom %></td>
-                    <td><%= user.mail %></td>
-                    <td><button onclick="deleteUser(<%= user.id %>)">SUPPR</button></td>
-                </tr>
-                <% }); %>
+                <% users.forEach(function(user) { %> <%- render.userRow(user.id, user.nom, user.mail) %> <% }); %>
             </table>
             <table>
-                <% babyfoots.forEach(function(babyfoot) { %>
-                <tr>
-                    <td><%= babyfoot.localisation %></td>
-                    <td><button onclick="deleteBabyfoot(<%= babyfoot.id %>)">SUPPR</button></td>
-                </tr>
-                <% }); %>
+                <% babyfoots.forEach(function(babyfoot) { %> <%- render.babyfootRow(babyfoot.id, babyfoot.localisation) %> <% }); %>
             </table>
             <table>
-                <% games.forEach(function(game) { %>
-                <tr>
-                    <td>Partie en cours : <%= game.babyfoot.localisation %></td>
-                    <td><button onclick="endGame(<%= game.id %>)">END</button></td>
-                </tr>
-                <% }); %>
+                <% games.forEach(function(game) { %> <%- render.gameRow(game.id, game.babyfoot.localisation) %> <% }); %>
             </table>
 
             <a href="/logout">Logout</a>
